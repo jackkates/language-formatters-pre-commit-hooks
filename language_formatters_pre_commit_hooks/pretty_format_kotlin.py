@@ -44,6 +44,7 @@ def pretty_format_kotlin(argv: typing.Optional[typing.List[str]] = None) -> int:
 
     not_pretty_formatted_files: typing.Set[str] = set()
     if check_status != 0:
+        print(output)
         not_pretty_formatted_files.update(line.split(":", 1)[0] for line in check_output.splitlines())
 
         if args.autofix:
