@@ -47,7 +47,6 @@ def pretty_format_kotlin(argv: typing.Optional[typing.List[str]] = None) -> int:
         not_pretty_formatted_files.update(line.split(":", 1)[0] for line in check_output.splitlines())
 
         if args.autofix:
-            print("Running ktlint format on {}".format(not_pretty_formatted_files))
             run_command(
                 "ktlint",
                 "--log-level",
@@ -61,12 +60,6 @@ def pretty_format_kotlin(argv: typing.Optional[typing.List[str]] = None) -> int:
     status = 0
     if not_pretty_formatted_files:
         status = 1
-        print(
-            "{}: {}".format(
-                "The following files have been fixed by ktlint" if args.autofix else "The following files are not properly formatted",
-                ", ".join(sorted(not_pretty_formatted_files)),
-            ),
-        )
 
     return status
 
