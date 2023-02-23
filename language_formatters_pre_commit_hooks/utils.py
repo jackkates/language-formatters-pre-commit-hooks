@@ -11,7 +11,6 @@ import requests
 
 
 def run_command(*command: str) -> typing.Tuple[int, str]:
-    print("[cwd={cwd}] Run command: {command}".format(command=command, cwd=os.getcwd()), file=sys.stderr)
     return_code, output = 1, ""
     try:
         return_code, output = (
@@ -23,7 +22,6 @@ def run_command(*command: str) -> typing.Tuple[int, str]:
         )
     except subprocess.CalledProcessError as e:
         return_code, output = e.returncode, e.output.decode("utf-8")
-    print("[return_code={return_code}] | {output}".format(return_code=return_code, output=output), file=sys.stderr)
     return return_code, output
 
 
